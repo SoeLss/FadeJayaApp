@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="InputFormStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/bg_rounded_top</item> <item name="android:backgroundTint">#FFFFFF</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

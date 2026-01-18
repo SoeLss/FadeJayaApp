@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Pelanggan"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/login_teal"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Search your keyword"
+        android:background="@drawable/bg_search_rounded"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:paddingHorizontal="16dp"
+        android:drawablePadding="12dp"
+        android:drawableTint="#9E9E9E"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+    <TextView
+        android:id="@+id/lblType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipe Member"
+        android:textStyle="bold"
+        android:textColor="#757575"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layoutFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/lblType">
+
+        <LinearLayout
+            android:id="@+id/btnFilterUmum"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_category_inactive"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:id="@+id/iconUmum"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_type_umum"
+                app:tint="#757575"/>
+
+            <TextView
+                android:id="@+id/txtUmum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Umum"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#757575"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilterReseller"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_category_inactive"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:id="@+id/iconReseller"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_type_reseller"
+                app:tint="#757575"/>
+
+            <TextView
+                android:id="@+id/txtReseller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reseller"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#757575"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilterInstansi"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_category_inactive">
+
+            <ImageView
+                android:id="@+id/iconInstansi"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_type_instansi"
+                app:tint="#757575"/>
+
+            <TextView
+                android:id="@+id/txtInstansi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instansi"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#757575"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Pelanggan"
+        android:textStyle="bold"
+        android:textColor="#757575"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutFilters"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCustomers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="12dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/lblList"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#00BCD4"
+        app:tint="@color/white"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FadeJayaApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trophy_medal_system"><![CDATA[Trophy & Medal System]]></string>
+    <string name="sign_in">Sign in</string>
+</resources>

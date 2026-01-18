@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_beranda"
+        android:icon="@drawable/ic_home"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/nav_transaksi"
+        android:icon="@drawable/ic_transaksi"
+        android:title="Transaksi" />
+
+    <item
+        android:id="@+id/nav_laporan"
+        android:icon="@drawable/ic_laporan"
+        android:title="Laporan" />
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting" />
+</menu>
