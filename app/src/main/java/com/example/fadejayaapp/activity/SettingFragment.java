@@ -19,6 +19,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.fadejayaapp.R;
+import com.example.fadejayaapp.activity.ChangePasswordActivity;
+import com.example.fadejayaapp.activity.EditProfileActivity;
+import com.example.fadejayaapp.activity.PrinterActivity;
 import com.example.fadejayaapp.utils.SessionManager;
 
 import java.util.HashMap;
@@ -36,9 +39,10 @@ public class SettingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
+        // 1. Init Session
         sessionManager = new SessionManager(getContext());
 
-        // Init View
+        // 2. Init Views
         tvName = view.findViewById(R.id.tvName);
         tvRole = view.findViewById(R.id.tvRole);
         imgProfile = view.findViewById(R.id.imgProfile);
@@ -49,44 +53,79 @@ public class SettingFragment extends Fragment {
         menuPrinter = view.findViewById(R.id.menuPrinter);
         menuAbout = view.findViewById(R.id.menuAbout);
 
+        // 3. Load Data Awal
         loadUserData();
 
-        // --- LISTENERS ---
+        // 4. Setup Listeners (Aksi Klik Menu)
 
+        // Menu Edit Profil
         menuEditProfile.setOnClickListener(v -> {
-            // Intent ke Activity Edit Profile (Buat nanti)
-            Toast.makeText(getContext(), "Fitur Edit Profil", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(getContext(), ProfileActivity.class));
+            Intent intent = new Intent(getContext(), EditProfileActivity.class);
+            startActivity(intent);
         });
 
+        // Menu Ganti Password
+        menuChangePass.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+            startActivity(intent);
+        });
+
+        // Menu Setting Printer (Penting untuk Cetak Struk)
         menuPrinter.setOnClickListener(v -> {
-            // Intent ke Activity Setting Printer Bluetooth (Penting buat Kasir)
-            Toast.makeText(getContext(), "Fitur Setting Printer", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), PrinterActivity.class);
+            startActivity(intent);
         });
 
+        // Menu Tentang Aplikasi (Opsional)
+        menuAbout.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Aplikasi Fade Jaya v1.0\nDeveloped by RRLabs", Toast.LENGTH_LONG).show();
+        });
+
+        // Tombol Logout
         btnLogout.setOnClickListener(v -> showLogoutDialog());
 
         return view;
     }
 
+    // Dipanggil otomatis saat kembali ke halaman ini (agar nama/foto terupdate)
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadUserData();
+    }
+
     private void loadUserData() {
+        if (getContext() == null) return;
+
         HashMap<String, String> user = sessionManager.getUserDetails();
         String name = user.get(SessionManager.KEY_NAME);
         String role = user.get(SessionManager.KEY_ROLE);
         String photo = user.get(SessionManager.KEY_PHOTO);
 
-        tvName.setText(name);
-        tvRole.setText(role);
+        // Set Text
+        tvName.setText(name != null ? name : "User");
+        tvRole.setText(role != null ? role.toUpperCase() : "STAFF");
 
-        // Load Foto jika ada
+        // Load Foto Profil dengan Glide
+        // Ganti URL_BASE dengan alamat server Anda yang sebenarnya
+        String BASE_URL_IMG = "https://api.robotrakitan.my.id/uploads/";
+
         if (photo != null && !photo.isEmpty()) {
-            String url = "https://api.robotrakitan.my.id/uploads/" + photo;
-            Glide.with(this).load(url).circleCrop().into(imgProfile);
+            Glide.with(this)
+                    .load(BASE_URL_IMG + photo)
+                    .placeholder(R.drawable.ic_menu_karyawan) // Gambar default saat loading
+                    .error(R.drawable.ic_menu_karyawan)       // Gambar jika error/tidak ketemu
+                    .circleCrop()
+                    .into(imgProfile);
+        } else {
+            imgProfile.setImageResource(R.drawable.ic_menu_karyawan);
         }
     }
 
-    // Reuse Dialog Logout Modern yang Anda buat sebelumnya
+    // Menampilkan Dialog Logout Modern
     private void showLogoutDialog() {
+        if (getContext() == null) return;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_logout, null);
         builder.setView(view);
@@ -103,8 +142,8 @@ public class SettingFragment extends Fragment {
 
         btnConfirm.setOnClickListener(v -> {
             dialog.dismiss();
-            sessionManager.logoutUser(); // Logout dan pindah ke Login
-            if (getActivity() != null) getActivity().finish();
+            sessionManager.logoutUser(); // Logout dan Clear Session
+            if (getActivity() != null) getActivity().finish(); // Tutup Main Activity
         });
 
         dialog.show();

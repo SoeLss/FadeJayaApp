@@ -48,7 +48,7 @@
                 android:layout_marginBottom="20dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="#F5F5F5">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                         android:drawablePadding="16dp"
                         android:padding="16dp"
                         android:gravity="center_vertical"
-                        android:background="@color/hao"
+                        android:background="#F5F5F5"
                         android:textColor="#333"
                         app:drawableEndCompat="@drawable/ic_arrow_right"/>
 
@@ -151,7 +151,7 @@
                         android:drawablePadding="16dp"
                         android:padding="16dp"
                         android:gravity="center_vertical"
-                        android:background="@color/hao"
+                        android:background="#F5F5F5"
                         android:textColor="#333"
                         app:drawableEndCompat="@drawable/ic_arrow_right"/>
 
@@ -189,7 +189,7 @@
                         android:drawablePadding="16dp"
                         android:padding="16dp"
                         android:gravity="center_vertical"
-                        android:background="@color/hao"
+                        android:background="#F5F5F5"
                         android:textColor="#333"
                         app:drawableEndCompat="@drawable/ic_arrow_right"/>
 
@@ -205,7 +205,7 @@
                         android:drawablePadding="16dp"
                         android:padding="16dp"
                         android:gravity="center_vertical"
-                        android:background="@color/hao"
+                        android:background="#F5F5F5"
                         android:textColor="#333"
                         app:drawableEndCompat="@drawable/ic_arrow_right"/>
 

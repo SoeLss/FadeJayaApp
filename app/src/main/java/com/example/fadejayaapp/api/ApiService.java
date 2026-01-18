@@ -121,4 +121,18 @@ public interface ApiService {
             @Field("is_active") String isActive, // Kirim "1" atau "0"
             @Field("password") String password
     );
+    @FormUrlEncoded
+    @POST("../update_profile.php")
+    Call<UploadResponse> updateProfile(
+            @Field("id") String id,
+            @Field("full_name") String fullName
+    );
+
+    @FormUrlEncoded
+    @POST("../change_password.php")
+    Call<UploadResponse> changePassword(
+            @Field("id") String id,
+            @Field("old_password") String oldPassword,
+            @Field("new_password") String newPassword
+    );
 }
