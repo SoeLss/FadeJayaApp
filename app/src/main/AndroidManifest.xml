@@ -19,6 +19,15 @@
         android:theme="@style/Theme.FadeJayaApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ReturActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PembelianActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PenjualanActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PrinterActivity"
             android:exported="false" />
         <activity

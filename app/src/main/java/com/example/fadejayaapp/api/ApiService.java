@@ -3,6 +3,8 @@ package com.example.fadejayaapp.api;
 import com.example.fadejayaapp.model.LoginResponse;
 import com.example.fadejayaapp.model.ProductResponse;
 import com.example.fadejayaapp.model.SupplierResponse;
+import com.example.fadejayaapp.model.TransactionRequest;
+import com.example.fadejayaapp.model.TransactionResponse;
 import com.example.fadejayaapp.model.UploadResponse;
 import com.example.fadejayaapp.model.CustomerResponse; // <--- TAMBAHKAN INI
 import com.example.fadejayaapp.model.UploadResponse;
@@ -11,6 +13,7 @@ import com.example.fadejayaapp.model.UserResponse;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -135,4 +138,6 @@ public interface ApiService {
             @Field("old_password") String oldPassword,
             @Field("new_password") String newPassword
     );
+    @POST("../save_penjualan.php") // Sesuaikan dengan nama file PHP Anda
+    Call<TransactionResponse> savePenjualan(@Body TransactionRequest request);
 }
