@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.fadejayaapp.R;
 import com.example.fadejayaapp.model.Product;
+
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Pastikan nama layout XML sesuai dengan yang Anda miliki
         View view = LayoutInflater.from(context).inflate(R.layout.item_product_card, parent, false);
         return new ViewHolder(view);
     }
@@ -55,12 +58,54 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         holder.tvName.setText(p.getName());
 
+        // Setup variabel untuk spesifikasi
+        String kategori = p.getCategoryName() != null ? p.getCategoryName() : "Umum";
+        String jenisText = p.getType() != null ? p.getType() : "-";
+        String labelJenis = "Jenis"; // Default
+
+        // === LOGIKA KHUSUS KATEGORI PIALA ===
+        // Bisa cek berdasarkan ID kategori (misal "1") atau Nama Kategorinya ("Piala")
+        if ("1".equals(p.getCategoryId()) || "Piala".equalsIgnoreCase(kategori)) {
+            labelJenis = "Komponen";
+
+            // Pecah teks komponen berdasarkan koma
+            String[] listKomponen = jenisText.split(",");
+
+            // Batasi tampilan maksimal 3 komponen agar Card tidak kepanjangan
+            if (listKomponen.length > 3) {
+                jenisText = listKomponen[0].trim() + ", " +
+                        listKomponen[1].trim() + ", " +
+                        listKomponen[2].trim() + " ...";
+            }
+
+            // Tampilkan Tombol Info
+            holder.btnInfoKomponen.setVisibility(View.VISIBLE);
+
+            // Simpan teks komponen asli untuk ditampilkan penuh di pop-up
+            String fullKomponen = p.getType() != null ? p.getType().replace(",", "\n") : "";
+
+            // Aksi klik tombol Info
+            holder.btnInfoKomponen.setOnClickListener(v -> {
+                new android.app.AlertDialog.Builder(context)
+                        .setTitle("Detail Komponen Piala")
+                        .setMessage(fullKomponen)
+                        .setPositiveButton("Tutup", null)
+                        .show();
+            });
+
+        } else {
+            // Jika BUKAN Piala, sembunyikan tombol info
+            holder.btnInfoKomponen.setVisibility(View.GONE);
+        }
+
+        // Gabungkan semua teks spesifikasi
         String specs = "Seri : " + (p.getSeries() != null ? p.getSeries() : "-") + "\n" +
                 "Code : " + (p.getProductCode() != null ? p.getProductCode() : "-") + "\n" +
                 "Ukuran : " + (p.getHeight() != null ? p.getHeight() : "-") + "\n" +
-                "Kategori : " + (p.getCategoryName() != null ? p.getCategoryName() : "Umum") + "\n" +
-                "Jenis : " + (p.getType() != null ? p.getType() : "-") + "\n" +
+                "Kategori : " + kategori + "\n" +
+                labelJenis + " : " + jenisText + "\n" +
                 "Lokasi Rak : " + (p.getRackLocation() != null ? p.getRackLocation() : "-");
+
         holder.tvSpecs.setText(specs);
 
         // === LOGIKA ROLE UNTUK HARGA BELI ===
@@ -72,7 +117,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         String prices = "Harga Jual : " + formatRupiah(p.getSellPrice()) + "\n" +
-                displayBuyPrice + "\n" +  // Gunakan variabel yang sudah dicek role
+                displayBuyPrice + "\n" +
                 "Harga Grosir : " + formatRupiah(p.getWholesalePrice()) + "\n" +
                 "Stok : " + p.getStock();
         holder.tvPrices.setText(prices);
@@ -115,7 +160,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvSpecs, tvPrices;
-        ImageView imgProduct, btnEdit;
+        ImageView imgProduct, btnEdit, btnInfoKomponen; // TAMBAHKAN btnInfoKomponen DISINI
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,6 +169,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             tvPrices = itemView.findViewById(R.id.tvPrices);
             imgProduct = itemView.findViewById(R.id.imgProduct);
             btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnInfoKomponen = itemView.findViewById(R.id.btnInfoKomponen); // INISIALISASI ID DISINI
         }
     }
 }

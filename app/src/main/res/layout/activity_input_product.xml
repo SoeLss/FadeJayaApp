@@ -26,9 +26,10 @@
             app:tint="@color/white" />
 
         <TextView
+            android:id="@+id/tvPageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tambah Barang Baru"
+            android:text="Form Barang"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -69,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ketuk untuk upload foto"
+                android:text="Ketuk untuk mengatur foto"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20dp"
                 android:textColor="#757575"
@@ -79,7 +80,7 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama Barang (Cth: Piala Kaki 2)"
+                android:hint="Nama Barang"
                 android:padding="12dp"
                 android:textColorHint="#2a2a2a"
                 android:textColor="#00C2CB"
@@ -92,7 +93,7 @@
                 android:id="@+id/etSeries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seri (Cth: AJ-120)"
+                android:hint="Seri"
                 android:padding="12dp"
                 android:textColorHint="#2a2a2a"
                 android:textColor="#00C2CB"
@@ -105,7 +106,7 @@
                 android:id="@+id/etCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Kode Produk (Cth: AJ120-K)"
+                android:hint="Kode Produk"
                 android:padding="12dp"
                 android:textColorHint="#2a2a2a"
                 android:textColor="#00C2CB"
@@ -125,7 +126,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Ukuran (Cth: 45 CM)"
+                    android:hint="Ukuran"
                     android:padding="12dp"
                     android:textColorHint="#2a2a2a"
                     android:textColor="#00C2CB"
@@ -139,7 +140,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Lokasi Rak (Cth: B2)"
+                    android:hint="Lokasi Rak"
                     android:padding="12dp"
                     android:textColorHint="#2a2a2a"
                     android:textColor="#00C2CB"
@@ -149,6 +150,7 @@
                     android:layout_marginStart="5dp"/>
             </LinearLayout>
 
+            <!-- Kategori TETAP Spinner -->
             <Spinner
                 android:id="@+id/spCategory"
                 android:layout_width="match_parent"
@@ -157,13 +159,22 @@
                 android:backgroundTint="#FFFFFF"
                 android:layout_marginBottom="10dp"/>
 
-            <Spinner
-                android:id="@+id/spType"
+            <!-- Jenis/Tipe DIUBAH menjadi TextView untuk memunculkan Checklist -->
+            <TextView
+                android:id="@+id/tvType"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:hint="Pilih Jenis / Komponen Piala"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:textColorHint="#2a2a2a"
+                android:textColor="#00C2CB"
                 android:background="@drawable/bg_rounded"
                 android:backgroundTint="#FFFFFF"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:textSize="14sp"/>
 
             <EditText
                 android:id="@+id/etBuyPrice"

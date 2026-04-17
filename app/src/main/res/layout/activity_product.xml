@@ -6,33 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9F9F9"
-    android:fitsSystemWindows="true"> <LinearLayout
-    android:id="@+id/header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:paddingTop="20dp"
-    android:paddingBottom="10dp"
-    android:paddingHorizontal="20dp"
-    app:layout_constraintTop_toTopOf="parent">
+    android:fitsSystemWindows="true">
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_arrow_back"
-        app:tint="@color/black"/>
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data Barang"
-        android:textColor="@color/login_teal"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"/>
-</LinearLayout>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Barang"
+            android:textColor="@color/login_teal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etSearch"
@@ -62,93 +64,132 @@
         app:layout_constraintTop_toBottomOf="@id/etSearch"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/layoutCategories"
+    <!-- DIBUNGKUS HORIZONTAL SCROLL AGAR BISA DIGESER JIKA LAYAR KECIL -->
+    <HorizontalScrollView
+        android:id="@+id/scrollCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:scrollbars="none"
         android:layout_marginTop="12dp"
-        android:paddingHorizontal="10dp"
         app:layout_constraintTop_toBottomOf="@id/tvLabelCat">
 
         <LinearLayout
-            android:id="@+id/btnCatPiala"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_category_active"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp">
+            android:id="@+id/layoutCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_piala"
-                app:tint="@color/white"
-                android:layout_marginBottom="8dp"/>
+            <!-- 1. KATEGORI PIALA -->
+            <LinearLayout
+                android:id="@+id/btnCatPiala"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_category_active"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategori\nPiala"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_piala"
+                    app:tint="@color/white"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori\nPiala"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- 2. KATEGORI BAHAN PIALA (BARU) -->
+            <LinearLayout
+                android:id="@+id/btnCatBahanPiala"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_category_inactive"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_piala"
+                    app:tint="@color/white"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bahan\nPiala"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- 3. KATEGORI MEDALI -->
+            <LinearLayout
+                android:id="@+id/btnCatMedali"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_category_inactive"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_medali"
+                    app:tint="@color/white"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori\nMedali"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- 4. KATEGORI PLAKAT -->
+            <LinearLayout
+                android:id="@+id/btnCatPlakat"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_category_inactive"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_plakat"
+                    app:tint="@color/white"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori\nPlakat"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnCatMedali"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_category_inactive"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_medali"
-                app:tint="@color/white"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategori\nMedali"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnCatPlakat"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_category_inactive"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="12dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_plakat"
-                app:tint="@color/white"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategori\nPlakat"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/tvLabelList"
@@ -159,7 +200,7 @@
         android:textStyle="bold"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/layoutCategories"
+        app:layout_constraintTop_toBottomOf="@id/scrollCategories"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
